@@ -110,66 +110,7 @@ bot.onText(/\/stop/, (msg) => {
   bot.sendMessage(chatId, 'Process stopped. You can start again using /start.');
 });
 
-// Function to apply for LinkedIn jobs
-// async function applyForLinkedInJobs(linkedinCookie, chatId) {
-//   let driver;
 
-//   try {
-//     await service.start();
-//     driver = await new Builder()
-//       .forBrowser('chrome')
-//       .setChromeService(service)
-//       .build();
-
-//     activeDrivers[chatId] = driver;
-
-//     console.log('Navigating to LinkedIn...');
-//     bot.sendMessage(chatId, 'Navigating to LinkedIn...');
-
-//     await driver.get('https://www.linkedin.com');
-//     await driver.manage().addCookie({ name: 'li_at', value: linkedinCookie });
-//     await driver.navigate().refresh();
-
-//     const cookies = await driver.manage().getCookies();
-//     console.log('Current cookies:', cookies);
-
-//     console.log('Navigating to job search page...');
-//     await driver.get('https://www.linkedin.com/jobs/search/');
-//     await setTimeout(3000); // Wait for the job search page to load
-
-//     console.log('Getting job listings...');
-//     let allListings = await driver.findElements(By.css('a.job-card-container__link'));
-
-//     for (let listing of allListings) {
-//       try {
-//         console.log('Clicking on job listing...');
-//         await listing.click();
-//         await setTimeout(2000); // Wait for the job details to load
-
-//         let applyButton = await driver.findElement(By.css('button.jobs-apply-button'));
-//         if (applyButton && await applyButton.getText().includes('Easy Apply')) {
-//           console.log('Applying for the job...');
-//           await applyButton.click();
-//           await setTimeout(2000); // Wait for the application form to load
-
-//           await handleLinkedInApplicationForm(driver);
-//           bot.sendMessage(chatId, 'Successfully applied for a job.');
-//         }
-//       } catch (err) {
-//         console.error('Error during job application process:', err);
-//         bot.sendMessage(chatId, `Error during job application: ${err.message}`);
-//         continue; // Continue to the next job listing even if an error occurs
-//       }
-//     }
-//   } catch (error) {
-//     console.error('Error in applyForLinkedInJobs:', error);
-//     bot.sendMessage(chatId, 'An error occurred during the LinkedIn job application process. Please try again later.');
-//   } finally {
-//     if (driver) {
-//       await driver.quit();
-//     }
-//   }
-// }
 async function applyForLinkedInJobs(linkedinCookie, chatId) {
   let driver;
 
